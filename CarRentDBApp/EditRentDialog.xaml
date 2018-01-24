@@ -1,0 +1,51 @@
+﻿<Window x:Class="CarRentDBApp.EditRentDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRentDBApp"
+        mc:Ignorable="d"
+        Title="Редактировать запись" Width="400" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Border">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="Background.Color">
+                                <ColorAnimation To="#FF363030" Duration="0:0:0:0"></ColorAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="Background.Color">
+                                <ColorAnimation To="Black" Duration="0:0:0:0"></ColorAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel Name="TextFieldsBlock" Margin="20">
+        <StackPanel DockPanel.Dock="Top" Name="RentDaysBlock" HorizontalAlignment="Center">
+            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="4">Количество дней проката</TextBlock>
+            <TextBox Name="RentDaysBox" DockPanel.Dock="Top" Width="50" HorizontalAlignment="Center" MaxLength="1" FontSize="15" />
+        </StackPanel>
+        <DockPanel DockPanel.Dock="Top" Margin="0, 10, 0, 10" HorizontalAlignment="Center">
+            <Border CornerRadius="6" Margin="10" Padding="0" Width="50" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="OkButton" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White" MouseLeftButtonDown="OkButton_MouseLeftButtonDown" >
+                        OK
+                </TextBlock>
+            </Border>
+            <Border CornerRadius="6" Margin="10" Padding="0" Width="50" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="CancelButton" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White" MouseLeftButtonDown="CancelButton_MouseLeftButtonDown" >
+                        Отмена
+                </TextBlock>
+            </Border>
+        </DockPanel>
+    </DockPanel>
+</Window>

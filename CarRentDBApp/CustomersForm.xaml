@@ -1,0 +1,85 @@
+﻿<Window x:Class="CarRentDBApp.CustomersForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRentDBApp"
+        mc:Ignorable="d"
+        Title="Клиенты" Width="400" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Border">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="Background.Color">
+                                <ColorAnimation To="#FF363030" Duration="0:0:0:0"></ColorAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="Background.Color">
+                                <ColorAnimation To="Black" Duration="0:0:0:0"></ColorAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel Name="TextFieldsBlock" Margin="20" HorizontalAlignment="Center">
+        <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+        <StackPanel DockPanel.Dock="Top" Name="PassBlock" HorizontalAlignment="Left">
+            <TextBlock DockPanel.Dock="Top" Margin="4" HorizontalAlignment="Left">Серия и номер паспорта</TextBlock>
+            <TextBox Name="PassBox" DockPanel.Dock="Top" Width="150" HorizontalAlignment="Left" MaxLength="8" FontSize="15" TextChanged="TextBox_TextChanged"></TextBox>
+        </StackPanel>
+
+        <StackPanel Name="LNameBlock" DockPanel.Dock="Top" HorizontalAlignment="Left">
+            <TextBlock DockPanel.Dock="Top" Margin="4" HorizontalAlignment="Left">Фамилия</TextBlock>
+            <TextBox Name="LNameBox" DockPanel.Dock="Top" Width="150" HorizontalAlignment="Left" MaxLength="15" FontSize="15" TextChanged="TextBox_TextChanged" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top" Name="FNameBlock" HorizontalAlignment="Left">
+            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="4">Имя</TextBlock>
+            <TextBox Name="FNameBox" DockPanel.Dock="Top" Width="150" HorizontalAlignment="Left" MaxLength="20" FontSize="15" TextChanged="TextBox_TextChanged"></TextBox>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top" Name="MNameBlock" HorizontalAlignment="Left">
+            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="4">Отчество(может быть пустым)</TextBlock>
+            <TextBox Name="MNameBox" DockPanel.Dock="Top" Width="150" HorizontalAlignment="Left" MaxLength="20" FontSize="15" TextChanged="TextBox_TextChanged"></TextBox>
+        </StackPanel>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" Margin="0, 10, 0, 0" HorizontalAlignment="Center">
+            <Border CornerRadius="6" Margin="10" Padding="0" Width="55" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="ToBegin" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White" MouseLeftButtonDown="ToBegin_MouseLeftButtonDown">
+                        В начало
+                </TextBlock>
+            </Border>
+            <Border CornerRadius="6" Margin="10" Padding="0" Width="50" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="Prev" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White" MouseLeftButtonDown="PrevButton_MouseLeftButtonDown">
+                        Пред
+                </TextBlock>
+            </Border>
+            <Border CornerRadius="6" Margin="10" Padding="0" Width="50" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="Next" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White" MouseLeftButtonDown="NextButton_MouseLeftButtonDown">
+                        След
+                </TextBlock>
+            </Border>
+            <Border CornerRadius="6" Margin="10" Padding="0" Width="55" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="ToEnd" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White" MouseLeftButtonDown="ToEnd_MouseLeftButtonDown">
+                        В конец
+                </TextBlock>
+            </Border>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" Margin="0, 0, 0, 10" HorizontalAlignment="Right">
+            <Border CornerRadius="6" Margin="10" Padding="0" Width="50" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="New" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White" MouseLeftButtonDown="New_MouseLeftButtonDown" >
+                        Новый
+                </TextBlock>
+            </Border>
+        </DockPanel>
+    </DockPanel>
+</Window>

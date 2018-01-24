@@ -1,0 +1,191 @@
+﻿<UserControl x:Class="CarRentDBApp.TabContentTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CarRentDBApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Border">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="Background.Color">
+                                <ColorAnimation To="#FF363030" Duration="0:0:0:0"></ColorAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="Background.Color">
+                                <ColorAnimation To="Black" Duration="0:0:0:0"></ColorAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <DockPanel Name="Container" ScrollViewer.CanContentScroll="True" Margin="0">
+        <DockPanel Name="GovNumParams" DockPanel.Dock="Top">
+            <Label 
+                DockPanel.Dock="Top" 
+                HorizontalAlignment="Center"
+                Margin="0, 5, 0, 0"
+                FontSize="14"
+                FontWeight="DemiBold">
+                Введите гос. номер автомобиля
+            </Label>
+            <StackPanel 
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                DockPanel.Dock="Top">
+                <TextBox Name="GovNumBox" Margin="10" MaxLength="10" Width="100" FontSize="15"></TextBox>
+                <Border Name="ExecGovNumRequest" CornerRadius="6" Margin="10" Width="50" Background="Black" DockPanel.Dock="Top" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="GovNumB" TextAlignment="Center" Height="30" Padding="0, 6, 0 ,0" VerticalAlignment="Center" Foreground="White">
+                            Найти
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel Name="TimeParams" DockPanel.Dock="Top">
+            <Label 
+                DockPanel.Dock="Top" 
+                HorizontalAlignment="Center"
+                Margin="0, 5, 0, 0"
+                FontSize="14"
+                FontWeight="DemiBold">
+                Определите временной  промежуток(в формате ДД.ММ.ГГГГ)
+            </Label>
+            <StackPanel 
+                HorizontalAlignment="Center"
+                Orientation="Horizontal" DockPanel.Dock="Top">
+                <DatePicker Name="StartDate" Margin="10"></DatePicker>
+                <DatePicker Name="EndDate" Margin="10"></DatePicker>
+                <Border Name="ExecTimeRequest" CornerRadius="6" Margin="10" Width="70" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                        <TextBlock Name="ExecTimeRequestB" TextAlignment="Center" Height="30" Padding="0, 6, 0, 0" VerticalAlignment="Center" Foreground="White">
+                        Выполнить
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+        </DockPanel>
+        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+            <DataGrid 
+                Margin="0, 0, 0, 0" 
+                Name="DataGrid"  
+                Width="Auto" 
+                Height="Auto" 
+                ScrollViewer.CanContentScroll="True"
+                HeadersVisibility="Column"
+                Background="Transparent"
+                IsReadOnly="True">
+                <DataGrid.ColumnHeaderStyle >
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Black"></Setter>
+                        <Setter Property="Foreground" Value="White"></Setter>
+                        <Setter Property="Padding" Value="5"></Setter>
+                        <Setter Property="BorderThickness" Value="0.5, 0, 0.5, 0"></Setter>
+                        <Setter Property="BorderBrush" Value="Gray"></Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="true">
+                                <Setter Property="Background" Value="#FFE2DBDB"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Style.Triggers>
+                            <Trigger Property="DataGridRow.IsSelected" Value="true">
+                                <Setter Property="Background" Value="#FFE2DBDB"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                
+            </DataGrid>
+        </ScrollViewer>
+        <DockPanel Name="EditingBlock" DockPanel.Dock="Top" VerticalAlignment="Top" Height="50" Background="White" LastChildFill="False" >
+                <Border Name="NewRent" CornerRadius="6" Margin="10" Padding="0" Width="120" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="NewRentB" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White">
+                        Оформить прокат
+                    </TextBlock>
+                </Border>
+
+                <Border Name="AddButton" CornerRadius="6" Margin="10" Padding="0" Width="70" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="AddB" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White">
+                        Добавить
+                </TextBlock>
+            </Border>
+            <Border Name="EditButton" CornerRadius="6" Margin="10" Padding="0" Width="100" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                <TextBlock Name="EditB" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White">
+                    Редактировать
+                </TextBlock>
+            </Border>
+            <Border Name="DeleteButon" CornerRadius="6" Margin="10" Padding="0" Width="60" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="DeleteB" TextAlignment="Center" Margin="0" Height="30" Padding="0, 6, 0, 0" Foreground="White">
+                        Удалить
+                </TextBlock>
+            </Border>
+        </DockPanel>
+            <DockPanel Name="PagingBlock" DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" Background="White" LastChildFill="False" >
+                <Border Name="Prev" CornerRadius="6" Margin="10" Width="60" Height="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="PrevPage" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        Пред
+                    </TextBlock>
+                </Border>
+                <Border Name="PageButton1" CornerRadius="6" Margin="10" Height="30" Width="30" Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="PageNum1" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        1
+                    </TextBlock>
+                </Border>
+                <Border Name="PageButton2" CornerRadius="6" Margin="10" Height="30" Width="30"  Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="PageNum2" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        2
+                    </TextBlock>
+                </Border>
+                <Border Name="PageButton3" CornerRadius="6" Margin="10" Padding="0" Height="30" Width="30"  Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="PageNum3" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        3
+                    </TextBlock>
+                </Border>
+                <TextBlock Name="Splitter" TextAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="18" FontWeight="Bold">
+                        ...
+                </TextBlock>
+                <Border Name="PageButton4" CornerRadius="6" Margin="10" Padding="0" Height="30" Width="30"  Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="PageNum4" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        4
+                    </TextBlock>
+                </Border>
+                <Border Name="PageButton5" CornerRadius="6" Margin="10" Padding="0" Height="30" Width="30"  Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="PageNum5" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        5
+                    </TextBlock>
+                </Border>
+                <Border Name="PageButton6" CornerRadius="6" Margin="10" Padding="0" Height="30" Width="30"  Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="PageNum6" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        6
+                    </TextBlock>
+                </Border>
+                <Border Name="Next" CornerRadius="6" Margin="10" Height="30" Width="60" Background="Black" Style="{StaticResource ButtonStyle}">
+                    <TextBlock Name="NextPage" Margin="0" TextAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        След
+                    </TextBlock>
+                </Border>
+            </DockPanel>
+        </DockPanel>
+    </ScrollViewer>
+</UserControl>
